@@ -1,8 +1,10 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { ComidaDto } from './dto/comidaDto.dto';
 import { CreateComidaDto } from './dto/create-comida.dto';
-import UpdateComidaDto from './dto/update-comida.dto';
+import { UpdateComidaDto } from './dto/update-comida.dto';
 import { Comida } from './entities/comida.entity';
 
 @Injectable()
@@ -18,14 +20,28 @@ export class ComidasService {
   }
 
   async findAll() {
-    return await this.comidaRepository.find({ relations: ['tipoComida'] });
+    const comidas = await this.comidaRepository.find({ relations: ['tipoComida'] });
+    return comidas.map(x => {
+      const {idTipoComida, ...resto} = x;
+      return resto as ComidaDto;
+    })
   }
 
-  async findOne(id: number) {
-    return await this.comidaRepository.findOne({
-      where: { id: id },
+  async findOne(id: number){
+    const comida = await this.comidaRepository.findOne({where: { id: id },relations: ['tipoComida'],});
+    const {idTipoComida, ...resto} = comida;
+    return resto as ComidaDto;
+  }
+
+  async findByType(tipo: number) {
+    const comidas = await this.comidaRepository.find({
+      where: { idTipoComida: tipo },
       relations: ['tipoComida'],
     });
+    return comidas.map(x => {
+      const {idTipoComida, ...resto} = x;
+      return resto as ComidaDto;
+    }) 
   }
 
   async update(id: number, updateComidaDto: UpdateComidaDto) {

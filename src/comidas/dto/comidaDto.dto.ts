@@ -1,4 +1,5 @@
-import { CreateComidaDto } from './create-comida.dto';
+/* eslint-disable prettier/prettier */
+import { TipoComida } from 'src/tipo-comidas/entities/tipo-comida.entity';
 
 export class ComidaDto {
   id: number;
@@ -7,5 +8,5 @@ export class ComidaDto {
 
   linkAReceta: string;
 
-  TipoComida: CreateComidaDto;
+  tipoComida: TipoComida;
 }

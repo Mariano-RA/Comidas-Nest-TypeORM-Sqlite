@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Controller,
   Get,
@@ -8,8 +9,9 @@ import {
   Delete,
 } from '@nestjs/common';
 import { ComidasService } from './comidas.service';
+import { ComidaDto } from './dto/comidaDto.dto';
 import { CreateComidaDto } from './dto/create-comida.dto';
-import UpdateComidaDto from './dto/update-comida.dto';
+import { UpdateComidaDto } from './dto/update-comida.dto';
 
 @Controller('comidas')
 export class ComidasController {
@@ -26,17 +28,22 @@ export class ComidasController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number){
     return this.comidasService.findOne(+id);
   }
 
+  @Get('Tipo/:id')
+  findByType(@Param('id') id: number) {
+    return this.comidasService.findByType(id);
+  }
+
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateComidaDto: UpdateComidaDto) {
+  update(@Param('id') id: number, @Body() updateComidaDto: UpdateComidaDto) {
     return this.comidasService.update(+id, updateComidaDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: number) {
     return this.comidasService.remove(+id);
   }
 }

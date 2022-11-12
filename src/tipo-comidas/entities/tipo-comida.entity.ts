@@ -10,7 +10,7 @@ import { Comida } from 'src/comidas/entities/comida.entity';
 
 @Entity()
 export class TipoComida {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column()
