@@ -3,15 +3,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ComidasModule } from './comidas/comidas.module';
-import { TipoComidasModule } from './tipo-comidas/tipo-comidas.module';
 
 @Module({
   imports: [
     ComidasModule,
-    TipoComidasModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'dietaDB',
+      database:
+        'e:/Mis proyectos/Comidas-Nest-TypeORM-Sqlite/src/database/Comidas.db',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),

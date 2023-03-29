@@ -1,7 +1,7 @@
 export class UpdateComidaDto {
-    descripcion: string;
+  nombre: string;
 
-  linkAReceta: string;
+  ingredientes: string;
 
-  idTipoComida: number;
+  receta: string;
 }

@@ -1,27 +1,16 @@
-import {
-  Entity,
-  JoinColumn,
-  Column,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-} from 'typeorm';
-import { TipoComida } from 'src/tipo-comidas/entities/tipo-comida.entity';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('Comidas')
 export class Comida {
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  descripcion: string;
+  nombre: string;
 
   @Column()
-  linkAReceta: string;
+  ingredientes: string;
 
   @Column()
-  idTipoComida: number;
-
-  @ManyToOne((type) => TipoComida, (tipoComida) => tipoComida.id)
-  @JoinColumn({ name: 'idTipoComida', referencedColumnName: 'id' })
-  tipoComida: TipoComida;
+  receta: string;
 }

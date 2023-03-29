@@ -20,28 +20,15 @@ export class ComidasService {
   }
 
   async findAll() {
-    const comidas = await this.comidaRepository.find({ relations: ['tipoComida'] });
-    return comidas.map(x => {
-      const {idTipoComida, ...resto} = x;
-      return resto as ComidaDto;
-    })
+    const comidas = await this.comidaRepository.find();
+    return comidas;
   }
 
-  async findOne(id: number){
-    const comida = await this.comidaRepository.findOne({where: { id: id },relations: ['tipoComida'],});
-    const {idTipoComida, ...resto} = comida;
-    return resto as ComidaDto;
-  }
-
-  async findByType(tipo: number) {
-    const comidas = await this.comidaRepository.find({
-      where: { idTipoComida: tipo },
-      relations: ['tipoComida'],
+  async findOne(id: number) {
+    const comida = await this.comidaRepository.findOne({
+      where: { id: id },
     });
-    return comidas.map(x => {
-      const {idTipoComida, ...resto} = x;
-      return resto as ComidaDto;
-    }) 
+    return comida as ComidaDto;
   }
 
   async update(id: number, updateComidaDto: UpdateComidaDto) {

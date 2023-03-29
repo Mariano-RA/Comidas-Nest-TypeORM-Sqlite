@@ -1,9 +1,7 @@
 export class CreateComidaDto {
-  id: number;
+  nombre: string;
 
-  descripcion: string;
+  ingredientes: string;
 
-  linkAReceta: string;
-
-  idTipoComida: number;
+  receta: string;
 }

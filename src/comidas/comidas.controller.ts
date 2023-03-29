@@ -9,7 +9,6 @@ import {
   Delete,
 } from '@nestjs/common';
 import { ComidasService } from './comidas.service';
-import { ComidaDto } from './dto/comidaDto.dto';
 import { CreateComidaDto } from './dto/create-comida.dto';
 import { UpdateComidaDto } from './dto/update-comida.dto';
 
@@ -28,13 +27,8 @@ export class ComidasController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number){
+  findOne(@Param('id') id: number) {
     return this.comidasService.findOne(+id);
-  }
-
-  @Get('Tipo/:id')
-  findByType(@Param('id') id: number) {
-    return this.comidasService.findByType(id);
   }
 
   @Patch(':id')
