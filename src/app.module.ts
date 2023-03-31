@@ -9,8 +9,7 @@ import { ComidasModule } from './comidas/comidas.module';
     ComidasModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database:
-        'e:/Mis proyectos/Comidas-Nest-TypeORM-Sqlite/src/database/Comidas.db',
+      database: './src/database/Comidas.db',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
