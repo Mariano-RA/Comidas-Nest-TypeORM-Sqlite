@@ -1,20 +1,23 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ComidasModule } from './comidas/comidas.module';
+import { RecetasModule } from './recetas/recetas.module';
+import { IngredientesModule } from './ingredientes/ingredientes.module';
+import { PlanesModule } from './planes/planes.module';
+import { Receta } from './recetas/receta.entity';
+import { Ingrediente } from './ingredientes/ingrediente.entity';
+import { PlanSemanal } from './planes/plan-semanal.entity';
 
 @Module({
   imports: [
-    ComidasModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: './src/database/Comidas.db',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      entities: [Receta, Ingrediente, PlanSemanal],
       synchronize: true,
     }),
+    RecetasModule,
+    IngredientesModule,
+    PlanesModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
