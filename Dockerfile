@@ -14,7 +14,7 @@ RUN npm ci --omit=dev
 COPY . .
 
 # Compilamos el código TypeScript
-RUN npm run build
+RUN npm run build-render
 
 # Puerto que usará el servidor
 EXPOSE 8080
