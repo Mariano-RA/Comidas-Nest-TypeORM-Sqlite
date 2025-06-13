@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'; // << IMPORTANTE
 import { PlanesService } from './planes.service';
 import { PlanesController } from './planes.controller';
 import { PlanSemanal } from './plan-semanal.entity';
-import { RecetasModule } from 'src/recetas/recetas.module';
+import { RecetasModule } from '../recetas/recetas.module';
 
 @Module({
   providers: [PlanesService],

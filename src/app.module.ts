@@ -11,7 +11,7 @@ import { PlanSemanal } from './planes/plan-semanal.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: './src/database/Comidas.db',
+      database: './database/Comidas.db',
       entities: [Receta, Ingrediente, PlanSemanal],
       synchronize: true,
     }),
