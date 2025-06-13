@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PlanSemanal } from './plan-semanal.entity';
-import { RecetasService } from 'src/recetas/recetas.service';
+import { RecetasService } from '../recetas/recetas.service';
 
 @Injectable()
 export class PlanesService {
