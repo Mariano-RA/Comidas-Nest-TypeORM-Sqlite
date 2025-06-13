@@ -1,22 +1,24 @@
+# Imagen base de Node.js (ligera y estable)
 FROM node:lts-alpine
 
-# Create app directory
+# Directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# Copiamos solo los archivos necesarios para instalar dependencias
 COPY package*.json ./
 
-# Install app dependencies
-RUN npm ci
+# Instalamos las dependencias en modo producción
+RUN npm ci --omit=dev
 
-# Bundle app source
+# Copiamos el resto del código fuente
 COPY . .
 
-# Creates a "dist" folder with the production build
+# Compilamos el código TypeScript
 RUN npm run build
 
+# Puerto que usará el servidor
 EXPOSE 8080
 ENV PORT=8080
-CMD ["node", "dist/main.js"] 
 
-# docker build -t backend-comidas . para crear la imagen de nombre "getting-started"
+# Comando para iniciar la app
+CMD ["node", "dist/main.js"]
