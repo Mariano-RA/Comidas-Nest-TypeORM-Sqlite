@@ -10,10 +10,13 @@ import { PlanSemanal } from './planes/plan-semanal.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: './database/Comidas.db',
+      type: 'postgres',
+      url: process.env.DATABASE_URL,
       entities: [Receta, Ingrediente, PlanSemanal],
       synchronize: true,
+      ssl: {
+        rejectUnauthorized: false, // si tu BD lo requiere (Render lo usa)
+      },
     }),
     RecetasModule,
     IngredientesModule,
